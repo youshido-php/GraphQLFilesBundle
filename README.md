@@ -22,7 +22,7 @@ Mutation assumes that request content-type is `multipart/form-data` and include 
 Upload file mutation:
 ``` graphql
 mutation {
-  UploadFile(field: "image") {
+  uploadFile(field: "image") {
     id
     url
     fileName
