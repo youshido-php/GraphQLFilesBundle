@@ -3,7 +3,7 @@
 Symfony bundle for easy implementation images and files to your GraphQL API (bundle with GraphQL implementation and its documentation is [here](https://github.com/Youshido/GraphQLBundle)). Bundle provides `UploadImageMutation`:
 ``` graphql
 mutation {
-  uploadImage(field: "image") {
+  uploadImage(field: "file") {
     id
     url
     fileName
@@ -22,7 +22,7 @@ Mutation assumes that request content-type is `multipart/form-data` and include 
 Upload file mutation:
 ``` graphql
 mutation {
-  uploadFile(field: "image") {
+  uploadFile(field: "file") {
     id
     url
     fileName
