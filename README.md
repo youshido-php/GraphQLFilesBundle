@@ -1,6 +1,6 @@
-# API Images Bundle
+# GraphQL Files Bundle
 
-Symfony bundle for easy implementation images to your GraphQL API (bundle with GraphQL implementation and its documentation is [here](https://github.com/Youshido/GraphQLBundle)). Bundle provides `UploadImageMutation`:
+Symfony bundle for easy implementation images and files to your GraphQL API (bundle with GraphQL implementation and its documentation is [here](https://github.com/Youshido/GraphQLBundle)). Bundle provides `UploadImageMutation`:
 ``` graphql
 mutation {
   uploadImage(field: "image") {
@@ -95,6 +95,7 @@ graphql_file.image_resizer:
 ```
 
 #### 2.3. Configurate bundle in `config.yml`
+This is full configuration and by default are not needed:
 ``` yaml
 graph_ql_files:
     image_driver: gd     #imagine driver, can be gd, imagick or gmagick
