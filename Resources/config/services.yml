@@ -1,0 +1,59 @@
+parameters:
+    graphql_files.class.image_uploader: Youshido\GraphQLFilesBundle\Service\Uploader
+    graphql_files.class.file_uploader: Youshido\GraphQLFilesBundle\Service\Uploader
+
+services:
+    graphql_files.controller.resize:
+        class: Youshido\GraphQLFilesBundle\Controller\ResizeImageController
+        arguments:
+            - '@graphql_files.resizer'
+
+    graphql_files.request_context:
+        class: Symfony\Component\Routing\RequestContext
+        factory: ['@router', 'getContext']
+
+    graphql_files.upload_graphql_resolver:
+        class: Youshido\GraphQLFilesBundle\Service\GraphQLResolver\UploadGraphQLResolver
+        arguments:
+            - '@graphql_files.image_uploader'
+            - '@graphql_files.file_uploader'
+            - '@request_stack'
+
+    graphql_files.resize_graphql_resolver:
+        class: Youshido\GraphQLFilesBundle\Service\GraphQLResolver\ResizeGraphQLResolver
+        arguments:
+            - '@graphql_files.resizer'
+
+    graphql_files.resizer:
+        class: Youshido\GraphQLFilesBundle\Service\Resizer
+        arguments:
+            - '@graphql_files.storage'
+            - '@graphql_files.path_generator'
+            - '%graphql_files.image_driver%'
+
+    graphql_files.path_generator:
+        class: Youshido\GraphQLFilesBundle\Service\PathGenerator\DatePahGenerator
+
+    graphql_files.image_uploader:
+        class: '%graphql_files.class.image_uploader%'
+        lazy: true
+        arguments:
+            - '@graphql_files.path_generator'
+            - '@graphql_files.storage'
+            - '@validator'
+            - '@graphql_files.persistent_manager'
+        calls:
+            - ['setFileModelClass', ['%graphql_files.image_model%']]
+            - ['setValidationModelClass', ['%graphql_files.image_validation_model%']]
+
+    graphql_files.file_uploader:
+        class: '%graphql_files.class.file_uploader%'
+        lazy: true
+        arguments:
+            - '@graphql_files.path_generator'
+            - '@graphql_files.storage'
+            - '@validator'
+            - '@graphql_files.persistent_manager'
+        calls:
+            - ['setFileModelClass', ['%graphql_files.file_model%']]
+            - ['setValidationModelClass', ['%graphql_files.file_validation_model%']]

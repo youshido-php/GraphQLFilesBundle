@@ -1,0 +1,5 @@
+graphql_files.resize:
+    path:     /{uploadDir}/{mode}_{width}x{height}/{path}
+    defaults: { _controller: graphql_files.controller.resize:resizeAction }
+    requirements:
+        path: .+

@@ -1,0 +1,20 @@
+{
+  "name": "youshido/graphql-files-bundle",
+  "description": "Library to implement images and file upload to GraphQL API",
+  "keywords": ["graphql", "image", "files", "upload", "api", "symfony", "resize"],
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Portey Vasyl",
+      "email": "portey@gmail.com"
+    }
+  ],
+  "require": {
+    "imagine/imagine": "^0.7.1",
+    "php": ">=7.0.0"
+  },
+  "autoload": {
+    "psr-4": { "Youshido\\GraphQLFilesBundle\\": "" }
+  }
+}
